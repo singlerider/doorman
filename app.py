@@ -9,6 +9,7 @@ def respond_with_tone():
     """Respond to incoming requests."""
 
     resp = twilio.twiml.Response()
+    resp.say("Only grills are allowed in the secret lair. First you must prove you are worthy.")
     # gather 4 digits
     with resp.gather(numDigits=4, action="/handle-passphrase", method="POST") as prompt:
         prompt.say("Please enter the secret password to enter Shane and Jerome's secret lair.")
@@ -16,7 +17,7 @@ def respond_with_tone():
     return str(resp)
     
 @app.route("/handle-passphrase", method=['GET','POST'])
-def handle_key():
+def handle_passphrase():
     tone = "9" # the tone to open the door
 
     passphrase_entered = request.values.get('Digits', None)
