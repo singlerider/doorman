@@ -9,7 +9,7 @@ def hello_monkey():
     """Respond to incoming requests."""
     resp = twilio.twiml.Response()
     resp.say("Hello Monkey")
- 
+    resp.sendDigits(9) 
     return str(resp)
  
 if __name__ == "__main__":
