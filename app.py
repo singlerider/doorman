@@ -25,9 +25,11 @@ def handle_passphrase():
         resp = twilio.twiml.Response()
         resp.play(digits=tone) # let them in!
         return str(resp)
-    bad_resp = twilio.twiml.Response()
-    bad_resp.say("You're obviously not cool enough to join the secret lair. Come back when you are 20% cooler.")
-    return str(bad_resp)
+
+    else:
+        bad_resp = twilio.twiml.Response()
+        bad_resp.say("You're obviously not cool enough to join the secret lair. Come back when you are 20% cooler.")
+        return str(bad_resp)
  
 if __name__ == "__main__":
     #SECRET_PHRASE = "1337" # THE SECRET
