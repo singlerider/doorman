@@ -5,11 +5,13 @@ import twilio.twiml
 app = Flask(__name__)
  
 @app.route("/", methods=['GET', 'POST'])
-def hello_monkey():
+def respond_with_tone():
     """Respond to incoming requests."""
+    tone = "9" # the tone keypress you would like to send
+
     resp = twilio.twiml.Response()
-    resp.say("Hello Monkey")
-    resp.sendDigits(9) 
+    resp.play(digits=tone)
+ 
     return str(resp)
  
 if __name__ == "__main__":
