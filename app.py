@@ -16,10 +16,10 @@ def respond_with_tone():
 
     return str(resp)
     
-@app.route("/handle-passphrase", methods=['POST'])
+@app.route("/handle-passphrase", methods=['GET','POST'])
 def handle_passphrase():
     tone = "9" # the tone to open the door
-
+    SECRET_PHRASE = "1337"
     passphrase_entered = request.values.get('Digits', None)
     if passphrase_entered == SECRET_PHRASE:
         resp = twilio.twiml.Response()
@@ -27,12 +27,9 @@ def handle_passphrase():
 
     resp = twilio.twiml.Response()
     resp.play(digits=tone)
-
-
- 
     return str(resp)
  
 if __name__ == "__main__":
-    SECRET_PHRASE = "1337" # THE SECRET
+    #SECRET_PHRASE = "1337" # THE SECRET
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
