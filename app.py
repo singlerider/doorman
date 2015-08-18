@@ -23,6 +23,10 @@ def handle_key():
     if passphrase_entered == SECRET_PHRASE:
         resp = twilio.twiml.Response()
         resp.play(digits=tone) # let them in!
+
+    resp = twilio.twiml.Response()
+    resp.play(digits=tone)
+
  
     return str(resp)
  
