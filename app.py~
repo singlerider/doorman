@@ -16,7 +16,7 @@ def respond_with_tone():
 
     return str(resp)
     
-@app.route("/handle-passphrase", methods=['POST'])
+@app.route("/handle-passphrase", method=['GET','POST'])
 def handle_passphrase():
     tone = "9" # the tone to open the door
 
@@ -27,7 +27,6 @@ def handle_passphrase():
 
     resp = twilio.twiml.Response()
     resp.play(digits=tone)
-
 
  
     return str(resp)
