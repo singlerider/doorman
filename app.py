@@ -11,7 +11,7 @@ def respond_with_tone():
     resp = twilio.twiml.Response()
     resp.say("Only grills are allowed in the secret lair. First you must prove you are worthy.")
     # gather 4 digits
-    with resp.gather(numDigits=4, action="/handle-passphrase", method="POST") as prompt:
+    with resp.gather(numDigits=4, action="#", method="POST") as prompt:
         prompt.say("Please enter the secret password to enter Shane and Jerome's secret lair.")
 
     return str(resp)
@@ -24,10 +24,10 @@ def handle_passphrase():
     if passphrase_entered == SECRET_PHRASE:
         resp = twilio.twiml.Response()
         resp.play(digits=tone) # let them in!
-
-    resp = twilio.twiml.Response()
-    resp.play(digits=tone)
-    return str(resp)
+        return str(resp)
+    bad_resp = twilio.twiml.Response()
+    bad_resp.say("You're obviously not cool enough to join the secret lair. Come back when you are 20% cooler.")
+    return str(bad_resp)
  
 if __name__ == "__main__":
     #SECRET_PHRASE = "1337" # THE SECRET
