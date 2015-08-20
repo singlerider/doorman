@@ -3,6 +3,16 @@ from flask import Flask
 import twilio.twiml
  
 app = Flask(__name__)
+
+ADMINS = ['haroboy876@gmail.com']
+if not app.debug:
+    import logging
+    from logging.handlers import SMTPHandler
+    mail_handler = SMTPHandler('http://frontdoorhacks.herokuapp.com/',
+                               'server-error@example.com',
+                               ADMINS, 'YourApplication Failed')
+    mail_handler.setLevel(logging.ERROR)
+    app.logger.addHandler(mail_handler)
  
 @app.route("/", methods=['GET', 'POST'])
 def respond_with_tone():
