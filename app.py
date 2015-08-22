@@ -2,8 +2,8 @@ import os
 from flask import Flask
 import twilio.twiml
 import logging
-logger = logging.getLogger('myapp')
-hdlr = logging.FileHandler('/var/tmp/myapp.log')
+logger = logging.getLogger('app')
+hdlr = logging.FileHandler('/app/app.log')
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 hdlr.setFormatter(formatter)
 logger.addHandler(hdlr) 
