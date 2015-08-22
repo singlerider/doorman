@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, request
 import twilio.twiml
 
 app = Flask(__name__)
@@ -40,9 +40,11 @@ if __name__ == "__main__":
     import logging
     #logging.basicConfig(filename='error.log',level=logging.DEBUG)
     logger = logging.getLogger('werkzeug')
-    handler = logging.FileHandler('error.log')
+    handler = logging.StreamHandler()
     logger.addHandler(handler)
-    app.logger.addHandler(handler)
+    #app.logger.addHandler(handler)
+    app.logger.setLevel(logging.DEBUG)
+    
 
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
