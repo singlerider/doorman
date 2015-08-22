@@ -1,19 +1,16 @@
 import os
 from flask import Flask
 import twilio.twiml
+import logging
+logger = logging.getLogger('myapp')
+hdlr = logging.FileHandler('/var/tmp/myapp.log')
+formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+hdlr.setFormatter(formatter)
+logger.addHandler(hdlr) 
+logger.setLevel(logging.WARNING)
  
 app = Flask(__name__)
 
-ADMINS = ['haroboy876@gmail.com']
-if not app.debug:
-    import logging
-    from logging.handlers import SMTPHandler
-    mail_handler = SMTPHandler('http://frontdoorhacks.herokuapp.com/',
-                               'server-error@example.com',
-                               ADMINS, 'YourApplication Failed')
-    mail_handler.setLevel(logging.ERROR)
-    app.logger.addHandler(mail_handler)
- 
 @app.route("/", methods=['GET', 'POST'])
 def respond_with_tone():
     """Respond to incoming requests."""
