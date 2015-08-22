@@ -38,7 +38,11 @@ if __name__ == "__main__":
     #SECRET_PHRASE = "1337" # THE SECRET
 
     import logging
-    logging.basicConfig(filename='error.log',level=logging.DEBUG)
+    #logging.basicConfig(filename='error.log',level=logging.DEBUG)
+    logger = logging.getLogger('werkzeug')
+    handler = logging.FileHandler('error.log')
+    logger.addHandler(handler)
+    app.logger.addHandler(handler)
 
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
