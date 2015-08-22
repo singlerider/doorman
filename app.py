@@ -1,14 +1,7 @@
 import os
 from flask import Flask
 import twilio.twiml
-import logging
-logger = logging.getLogger('app')
-hdlr = logging.FileHandler('/app/app.log')
-formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
-hdlr.setFormatter(formatter)
-logger.addHandler(hdlr) 
-logger.setLevel(logging.WARNING)
- 
+
 app = Flask(__name__)
 
 @app.route("/", methods=['GET', 'POST'])
@@ -43,5 +36,9 @@ def handle_passphrase():
  
 if __name__ == "__main__":
     #SECRET_PHRASE = "1337" # THE SECRET
+
+    import logging
+    logging.basicConfig(filename='error.log',level=logging.DEBUG)
+
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
