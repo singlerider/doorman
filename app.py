@@ -32,7 +32,6 @@ def handle_passphrase():
         return str(bad_resp)
  
 if __name__ == "__main__": # app gets run as app.py
-    #SECRET_PHRASE = "1337" # THE SECRET
 
     import logging # will help in the event of an unexpected error
     logger = logging.getLogger('werkzeug')
